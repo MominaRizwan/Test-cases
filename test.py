@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class AdminPanelTests(unittest.TestCase):
-    BASE_URL = 'http://localhost:5173'
+    BASE_URL = 'http://localhost:5273'
     TIMEOUT = 120
 
     @classmethod
