@@ -96,7 +96,7 @@ class AdminPanelTests(unittest.TestCase):
         meta_charset = self.driver.find_elements(By.XPATH, "//meta[@charset='UTF-8']")
         self.assertTrue(len(meta_charset) > 0)
 
-    # ✅ New Simple Test 1: check for div
+    # ✅ New Simple Test 1: check for divs
     def test_page_contains_div(self):
         self.driver.get(self.BASE_URL)
         divs = self.driver.find_elements(By.TAG_NAME, 'div')
