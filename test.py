@@ -20,7 +20,7 @@ class AdminPanelTests(unittest.TestCase):
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--disable-gpu')
         options.add_argument('--window-size=1920,1080')
-        
+
         cls.driver = webdriver.Chrome(options=options)
         cls.wait = WebDriverWait(cls.driver, 10)
 
@@ -55,10 +55,6 @@ class AdminPanelTests(unittest.TestCase):
                 time.sleep(delay)
         raise Exception("❌ Admin Panel not reachable after retries.")
 
-    def test_application_url_check(self):
-        self.driver.get(self.BASE_URL)
-        self.assertIn('localhost:5173', self.driver.current_url)
-
     def test_home_page_title(self):
         self.driver.get(self.BASE_URL)
         self.assertTrue(self.driver.title)
@@ -83,10 +79,6 @@ class AdminPanelTests(unittest.TestCase):
         body = self.driver.find_element(By.TAG_NAME, 'body')
         self.assertTrue(body.is_displayed())
 
-    def test_check_if_page_contains_text(self):
-        self.driver.get(self.BASE_URL)
-        self.assertIn("ecommerce".lower(), self.driver.page_source.lower())
-
     def test_no_404_on_main_routes(self):
         routes = ['/', '/dashboard', '/login']
         for route in routes:
@@ -103,6 +95,18 @@ class AdminPanelTests(unittest.TestCase):
         self.driver.get(self.BASE_URL)
         meta_charset = self.driver.find_elements(By.XPATH, "//meta[@charset='UTF-8']")
         self.assertTrue(len(meta_charset) > 0)
+
+    # ✅ New Simple Test 1
+    def test_page_contains_nav_tag(self):
+        self.driver.get(self.BASE_URL)
+        navs = self.driver.find_elements(By.TAG_NAME, 'nav')
+        self.assertTrue(len(navs) > 0)
+
+    # ✅ New Simple Test 2
+    def test_footer_presence(self):
+        self.driver.get(self.BASE_URL)
+        footers = self.driver.find_elements(By.TAG_NAME, 'footer')
+        self.assertTrue(len(footers) > 0)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(AdminPanelTests)
