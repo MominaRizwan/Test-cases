@@ -102,7 +102,7 @@ class AdminPanelTests(unittest.TestCase):
         divs = self.driver.find_elements(By.TAG_NAME, 'div')
         self.assertTrue(len(divs) > 0)
 
-    # ✅ New Simple Test 2: check for buttons or links
+    # ✅ New Simple Test 2: check for buttons or link
     def test_contains_button_or_link(self):
         self.driver.get(self.BASE_URL)
         buttons = self.driver.find_elements(By.TAG_NAME, 'button')
